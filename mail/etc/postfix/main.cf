@@ -1,0 +1,21 @@
+compatibility_level=2
+mydestination = regexp:/etc/postfix/mydestination
+mynetworks = 127.0.0.0/8 10.0.0.0/8 192.168.0.0/16 172.16.0.0/12
+relayhost =
+smtpd_banner = $myhostname ESMTP $mail_name
+luser_relay = catchall
+local_recipient_maps =
+home_mailbox = Maildir/
+
+# TLS support
+smtpd_use_tls = yes
+smtpd_tls_security_level = encrypt
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_scache
+smtpd_tls_session_cache_timeout = 10800s
+smtpd_tls_cert_file = /cert/cert.pem
+smtpd_tls_key_file = /cert/key.pem
+
+# Limits
+in_flow_delay = 0
+smtpd_recipient_limit = 1500
+smtpd_recipient_overshoot_limit = 1500
